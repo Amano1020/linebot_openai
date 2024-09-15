@@ -40,6 +40,17 @@ def GPT_response(text):
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
+
+    # get request headers, body, method, and URL
+    headers = request.headers  # Request headers
+    body = request.get_data(as_text=True)  # Request body
+    method = request.method  # HTTP method
+    url = request.url  # Request URL
+
+    # Log or print the entire request information
+    app.logger.info("Request Headers: " + str(headers))
+    app.logger.info("Request Method: " + method)
+    app.logger.info("Request URL: " + url)
     # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
